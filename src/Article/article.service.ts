@@ -6,10 +6,15 @@ import { PrismaService } from 'nestjs-prisma';
 export class ArticleService {
   constructor(private prisma: PrismaService) {}
 
-  async create(payload: Prisma.Article_dbCreateInput): Promise<Article_db> {
+  async create(
+    payload: Prisma.Article_dbCreateInput,
+    userId,
+  ): Promise<Article_db> {
+    console.log(userId);
     return await this.prisma.article_db.create({
       data: {
         ...payload,
+        author: { connect: { userID: userId } },
       },
     });
   }

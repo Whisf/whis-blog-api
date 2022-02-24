@@ -6,7 +6,6 @@ import {
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
 import * as bcrypt from 'bcrypt';
-import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -37,6 +36,10 @@ export class UserService {
 
   async findById(Id: string) {
     return this.prisma.user_db.findUnique({ where: { userID: Id } });
+  }
+
+  async getByEmail(email: string) {
+    return this.prisma.user_db.findUnique({ where: { email: email } });
   }
 
   async getAllUser() {

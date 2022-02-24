@@ -1,12 +1,13 @@
-import { Body, Controller, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ArticleService } from './article.service';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBody, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation } from '@nestjs/swagger';
 import { CreateArticleBody } from 'src/models/article.model';
 import { User } from 'src/User/user.decorator';
 @Controller('article')
-// @UseGuards(AuthGuard)
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth()
 export class ArticleController {
   constructor(private articleService: ArticleService) {}
 
@@ -20,6 +21,6 @@ export class ArticleController {
     @User() user: any,
   ) {
     console.log(payload, user);
-    return this.articleService.create(payload);
+    return this.articleService.create(payload, user.userID);
   }
 }
