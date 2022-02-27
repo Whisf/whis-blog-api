@@ -19,10 +19,8 @@ import {
   ApiParam,
   ApiResponse,
 } from '@nestjs/swagger';
-import { CreateArticleBody } from 'src/models/article.model';
+import { CreateArticleBody, UpdateArticleDto } from 'src/models/article.model';
 import { User } from 'src/User/user.decorator';
-import { UpdateArticleDto } from './dto/update-article.dto';
-import { retry } from 'rxjs';
 @Controller('article')
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()

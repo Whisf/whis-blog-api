@@ -1,10 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiBody, ApiOperation } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import { CreateUserBody } from 'src/models/user.model';
+import { CreateUserBody, SignInDto } from 'src/models/user.model';
 import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
-import { SignInDto } from './dto/sign-in.dto';
 
 @Controller('Auth')
 export class AuthController {
