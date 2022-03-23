@@ -32,6 +32,14 @@
 $ npm install
 ```
 
+## Connect Prisma and Postgresql
+
+```bash
+
+$ yarn add prisma
+$ npx prisma db push
+```
+
 ## Running the app
 
 ```bash

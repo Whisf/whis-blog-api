@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env.stage.dev("DATABASE_URL")
+  url      = "postgresql://postgres:156327@localhost:5432/postgres?schema=public"
 }
 
 model User_db {
